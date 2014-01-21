@@ -1,5 +1,17 @@
+json = require('json')
 http = require("socket.http")
 
-print(http.request("http://online.karucha.pairg.dimap.ufrn.br/"))
+variavel = http.request("http://localhost/househub/token.php?method=login&username=alison&password=12345678abc")
 
-io.read() -- Waits for a response from the user
+print(variavel)
+
+result = json.decode(variavel)
+
+print("Status: " .. result['status'])
+
+mensagens = result['messages']
+print("\nMensagens:")
+table.foreach(mensagens, print)
+
+conteudo = result['content']
+print("\nSessid: " .. conteudo['sessid'])
